@@ -1,0 +1,8 @@
+declare lower;
+
+def tickData = hlc3(symbol="$TICK");
+
+def cumulativeTickValue = if SecondsTillTime(930) < 0 and SecondsTillTime(1600) > 0 then tickData + cumulativeTickValue[1] else 0;
+
+plot cumulativeTickPlot = if cumulativeTickValue != 0 then cumulativeTickValue else Double.nan;
+
