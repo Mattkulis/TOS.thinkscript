@@ -1,0 +1,4 @@
+ATR By aggregation period [dependant on set time frame]
+
+def atr = ATR();
+AddLabel(yes, " ATR_AggP: " + Round(atr, 2) + " ", if atr > atr[1] then Color.UPTICK else if atr < atr[1] then Color.DOWNTICK else Color.WHITE);
