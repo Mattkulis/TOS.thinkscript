@@ -1,0 +1,5 @@
+**// can easily change periods to 252 also for avg. TD/yr
+
+
+def avgVol = Average(volume, 60);
+AddLabel(yes, Round(avgVol, 0));
