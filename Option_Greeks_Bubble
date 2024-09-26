@@ -1,0 +1,12 @@
+declare upper;
+
+input showLabel = yes;
+
+# Get the Greeks for the current option
+def delta = if !isNaN(Delta()) then Delta() else Double.NaN;
+def theta = if !isNaN(Theta()) then Theta() else Double.NaN;
+def vega = if !isNaN(Vega()) then Vega() else Double.NaN;
+def gamma = if !isNaN(Gamma()) then Gamma() else Double.NaN;
+
+# Display the data in a label
+AddLabel(showLabel, "Delta: " + round(delta, 2) + " | Theta: " + round(theta, 2) + " | Vega: " + round(vega, 2) + " | Gamma: " + round(gamma, 2));
