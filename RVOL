@@ -1,3 +1,0 @@
-def rVol = volume / Average(volume, 50) [1];
-
-AddLabel(yes, round(rVol,2));
