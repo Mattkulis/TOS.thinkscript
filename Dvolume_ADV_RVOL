@@ -1,0 +1,20 @@
+#Dvolume_ADV_RVOL
+declare upper;
+
+input AverageLength = 250;  # Length for average volume calculation
+input showLabel = yes;       # Option to show label
+
+# Define the trading session time
+def isMarketOpen = SecondsFromTime(0930) >= 0 and SecondsTillTime(1600) >= 0;
+
+# Cumulative volume for the current day
+def cumulativeVolume = if isMarketOpen then CompoundValue(1, if isMarketOpen then cumulativeVolume[1] + volume else 0, volume) else 0;
+
+# Average Daily Volume over the last 250 days
+def avgVolume = Average(volume(period = AggregationPeriod.DAY), AverageLength);
+
+# Calculate Relative Volume (RVOL)
+def rVol = cumulativeVolume / avgVolume[1];
+
+# Display DVOL, ADV, and RVOL in a single label
+AddLabel(showLabel, "DVOL: " + cumulativeVolume + "  ADV: " + Round(avgVolume, 0) + "  RVOL: " + Round(rVol, 2));
