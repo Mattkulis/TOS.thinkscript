@@ -8,5 +8,10 @@ def theta = if !isNaN(Theta()) then Theta() else Double.NaN;
 def vega = if !isNaN(Vega()) then Vega() else Double.NaN;
 def gamma = if !isNaN(Gamma()) then Gamma() else Double.NaN;
 
+# Theoretical option price (using the Black-Scholes model)
+def theo = optionPrice();
+
 # Display the data in a label
-AddLabel(showLabel, "Delta: " + round(delta, 2) + " | Theta: " + round(theta, 2) + " | Vega: " + round(vega, 2) + " | Gamma: " + round(gamma, 2));
+AddLabel(showLabel, "Delta: " + round(delta, 2) + " | Theta: " + round(theta, 2) + 
+          " | Vega: " + round(vega, 2) + " | Gamma: " + round(gamma, 2) + 
+          " | Theo: " + round(theo, 2));
